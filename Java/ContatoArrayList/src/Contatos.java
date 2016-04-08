@@ -1,6 +1,5 @@
 
 import javax.swing.JOptionPane;
-
 import java.util.ArrayList;
 
 public class Contatos {
@@ -30,9 +29,9 @@ public class Contatos {
 					}while(!opcao.equals("nao"));
 					break;
 				case 2:
-					String listaDeContatos = "-----Lista de Contatos-----\n";
+					String listaDeContatos = "-----Lista de Contatos-----\n\n";
 					for(int i = 0; i < contatos.size(); i++){
-						listaDeContatos += "Nome do contato : "+ contatos.get(i).imprimeNome()+"\n"+"Telefone do Contato : "+ contatos.get(i).imprimeNum()+"\n";
+						listaDeContatos += "Nome do contato : "+ contatos.get(i).imprimeNome()+"\n"+"Telefone do Contato : "+ contatos.get(i).imprimeNum()+"\n\n";
 					}
 					JOptionPane.showMessageDialog(null, listaDeContatos);
 					break;
