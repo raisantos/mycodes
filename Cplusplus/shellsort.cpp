@@ -18,12 +18,6 @@ void insere(vector<int> &v){
 	}
 }
 
-void troca(vector<int> &v, int i, int j){
-	int temp = v[i];
-	v[i] = v[j];
-	v[j] = temp;
-}
-
 void shellsort(vector<int> &v){
      int h = 1;
      while(h < v.size()/3){
@@ -34,7 +28,7 @@ void shellsort(vector<int> &v){
           for(int i = h; i < v.size(); i++){
                int j = i;
                while(j >= h && v[j] < v[j-h]){
-                    troca(v, j, j-h);
+                    swap(v[j], v[j-h]);
                     j = j-h;
                }
           }
