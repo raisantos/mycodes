@@ -1,3 +1,4 @@
+
 //============================================================================
 // Name        : mergesort.cpp
 // Author      : 
@@ -28,23 +29,24 @@ void insere(vector<int> &v){
 
 void merge(vector<int> &v, int p, int q, int r){
 	int n1 = q-p+1, n2 = r-q;
-	vector<int> left(n1+1);
-	vector<int> right(n2+1);
+	vector<int> left(n1+2);
+	vector<int> right(n2+2);
 	int i, j;
 
-	for(i = 1; i < n1; i++){
+	for(i = 1; i <= n1; i++){
 		left[i] = v[p+i-1];
 	}
-
-	for(j = 1; j < n2; j++){
+	
+	for(j = 1; j <= n2; j++){
 		right[j] = v[q+j];
 	}
-
-	left[n1+1] = 101; right[n2+1] = 101;
-
-	i = 1;
+	
+	left[n1+1] = 101;
+	right[n2+1] = 101;
+	
+	i = 1; 
 	j = 1;
-	for(int k = p; k < r; k++){
+	for(int k = p; k <= r; k++){
 		if(left[i] <= right[j]){
 			v[k] = left[i];
 			i++;
@@ -67,10 +69,13 @@ void mergesort(vector<int> &v, int p, int r){
 }
 
 int main() {
-	vector<int> v(10);
+	vector<int> v(8);
 	insere(v);
+	cout << "vetor : ";
 	imprime(v);
-	mergesort(v, 1, v.size());
+	mergesort(v, 0, v.size()-1);
+	cout << "ordenado: ";
+
 	imprime(v);
 
 	return 0;
