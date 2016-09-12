@@ -73,7 +73,7 @@ int main() {
 	insere(v);
 	cout << "vetor : ";
 	imprime(v);
-	mergesort(v, 1, v.size());
+	mergesort(v, 0, v.size()-1);
 	cout << "vetor ordenado: ";
 	//int q = floor((1+v.size())/2);
 	//merge(v, 1, q, v.size());
