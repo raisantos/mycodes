@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -23,7 +25,7 @@ public:
 };
 
 void Item::print(){
-  cout << getVertex();
+  cout << getVertex() << endl;
 }
 
 class No {
@@ -71,11 +73,11 @@ public:
 
 Lista::Lista() {
     prim = new No(); // cabeça
-    prim -> prox = NULL;
+    prim -> setProx(NULL);
     ult = prim;
 }
 void Lista::insere(Item* x){
-	ult->prox = new No();
+	ult->setProx(new No());
 	ult = ult->prox;
 	ult->prox = NULL;
 	ult->item = x;
@@ -85,8 +87,8 @@ void Lista::print(){
   No* p = getPrim()->getProx();
   while(p != NULL){
     p->getItem()->print();
+    p = p->prox;
   }
-  p = p->prox;
 }
 
 void Lista::destroy(){
@@ -99,7 +101,7 @@ void Lista::destroy(){
 
 class Graph { // Não-direcionado
 
-  Lista<Vertex> *adj;
+  Lista *adj;
   int n, m; // ordem e tamanho
 
   public:
@@ -118,14 +120,14 @@ void Graph::Graph (int n) {
 void Graph::initialize(int n) {
   if (this->n != 0) destroy();
     this->n = n;
-    adj = new List<Vertex>[n+1]; // Vetor usa
+    adj = new Lista[n+1]; // Vetor usa
     // células de 1..n
 }
 
 void Graph::insertEdge(Vertex u, Vertex v) {
-  Item x(v); // chave = vértice
+  Item x = new Item(v); // chave = vértice
   adj[u].insere(x); // Insere na lista
-  x(u);
+  x = u;
   adj[v].insere(x); // Insere na lista
   m++;
 }
@@ -158,11 +160,19 @@ void testaGrafo(Grafo &g) {
 }
 
 int main(int argc, const char * argv[]) {
-  int n, m;
-
-  cout << "ordem: "; cin >> n;
-  Grafo g(n);
-  testaGrafo(g);
+  //int n, m;
+  Vertex v = 1;
+  Vertex b = 2;
+  Lista *l = new Lista();
+  Item *i = new Item(v);
+  Item *j = new Item(b);
+  
+  l->insere(j);
+  l->insere(i);
+  l->print();
+  //cout << "ordem: "; cin >> n;
+  //Grafo g(n);
+  //testaGrafo(g);
 
   return 0;
 
