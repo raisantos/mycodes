@@ -25,7 +25,7 @@ public:
 };
 
 void Item::print(){
-  cout << getVertex() << endl;
+  cout << getVertex() << " ";
 }
 
 class No {
@@ -89,6 +89,7 @@ void Lista::print(){
     p->getItem()->print();
     p = p->prox;
   }
+  cout << endl;
 }
 
 void Lista::destroy(){
@@ -113,21 +114,21 @@ class Graph { // Não-direcionado
 // métodos get/set para n, m e adj.
 };
 
-void Graph::Graph (int n) {
+Graph::Graph (int n) {
   initialize(n);
 }
 
 void Graph::initialize(int n) {
-  if (this->n != 0) destroy();
+  //if (this->n != 0){
     this->n = n;
     adj = new Lista[n+1]; // Vetor usa
-    // células de 1..n
+  //}  // células de 1..n
 }
 
 void Graph::insertEdge(Vertex u, Vertex v) {
-  Item x = new Item(v); // chave = vértice
+  Item *x = new Item(v); // chave = vértice
   adj[u].insere(x); // Insere na lista
-  x = u;
+  x = new Item (u);
   adj[v].insere(x); // Insere na lista
   m++;
 }
@@ -148,20 +149,27 @@ void Graph::destroy() {
 }
 
 // Função auxiliar
-void testaGrafo(Grafo &g) {
+void testaGrafo(Graph &g) {
   g.insertEdge(1, 2);
+  cout << "---1-----" << endl;
   g.insertEdge(2, 3);
+  cout << "---2-----" << endl;
   g.insertEdge(3, 4);
+  cout << "---3-----" << endl;
   g.insertEdge(4, 5);
+  cout << "---4-----" << endl;
   g.insertEdge(5, 1);
+  cout << "---5-----" << endl;
   g.insertEdge(5, 2);
+  cout << "---6-----" << endl;
   g.insertEdge(2, 4);
+  cout << "---7-----" << endl;
   g.print();
+  cout << "fim" << endl;
 }
 
 int main(int argc, const char * argv[]) {
-  //int n, m;
-  Vertex v = 1;
+  /*Vertex v = 1;
   Vertex b = 2;
   Lista *l = new Lista();
   Item *i = new Item(v);
@@ -169,10 +177,14 @@ int main(int argc, const char * argv[]) {
   
   l->insere(j);
   l->insere(i);
-  l->print();
-  //cout << "ordem: "; cin >> n;
-  //Grafo g(n);
-  //testaGrafo(g);
+  l->print();*/
+  
+  int n, m;
+  
+  cout << "ordem: "; cin >> n;
+  Graph g(n);
+  cout << "-----grafo-----" << endl;
+  testaGrafo(g);
 
   return 0;
 
