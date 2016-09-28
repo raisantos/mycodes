@@ -138,10 +138,10 @@ defun rodarEsquerda ( num lista)
 
 ;--------------------------------------------------------------------------------------------------------------------------------
 ;Questão 10 - conjunto das partes
-(defun combos (list)
+(defun conjunt (list)
 	(if (null list) '(nil)
 	(let * (( a (car list))
 		(d (cdr list))
-		(s (combos d))
+		(s (conjunt d))
 		(v (mapcar (lambda (x) (cons a x )) s )))
 		(append s v ))))
