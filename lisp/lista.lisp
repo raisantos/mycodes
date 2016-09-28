@@ -1,4 +1,4 @@
-1º Questão - Fatorial
+;1º Questão - Fatorial
 
 (defun factorial (num)
    (cond ((zerop num) 1)
@@ -8,8 +8,8 @@
 (setq n 6)
 (format t "~% Factorial ~d is: ~d" n (factorial n))
 
-------------------------------------------------------------------------------------------------------------------------------
-2º Questão  Sequência Fibonacci
+;------------------------------------------------------------------------------------------------------------------------------
+;2º Questão  Sequência Fibonacci
 (defun fibonacci (num)
     (cond ((= num 1) 0)
         ((= num 2) 1)	
@@ -19,8 +19,8 @@
 (setq n 5)
 (format t "~% The ~d number in the Fibonacci Sequence is: ~d" n (fibonacci n))
 
------------------------------------------------------------------------------------------------------------
-3º Questão  - União 
+;-----------------------------------------------------------------------------------------------------------
+;3º Questão  - União 
 ((defun uniao (l1 l2)
     (setq luniao (copy-seq l2))
     (mapcar 
@@ -35,8 +35,8 @@
 (setq b (list 3 4 5 1))
 (write (uniao a b))
 
-------------------------------------------------------------------------------------------------------------------------------
-4º Questão -  	
+;------------------------------------------------------------------------------------------------------------------------------
+;4º Questão - Intersecção 	
 (defun intersecao (l1 l2)
     (setq lintersecao (list))
     (mapcar 
@@ -51,8 +51,8 @@
 (setq b (list 3 4 5 1))
 (write (intersecao a b))
 
-------------------------------------------------------------------------------------------------------------------------------
-5º Questão - RodarEsquerda
+;------------------------------------------------------------------------------------------------------------------------------
+;5º Questão - RodarEsquerda
 
 defun rodarEsquerda ( num lista)
 	(dotimes (i num)
@@ -73,8 +73,8 @@ defun rodarEsquerda ( num lista)
 
 (setq a (list 1 2 3))
 (write (rodarEsquerda 2 a ))
------------------------------------------------------------------------------------------------------------
-6º Questão – RodarDireita
+;-----------------------------------------------------------------------------------------------------------
+;6º Questão – RodarDireita
 
 (defun rodarDireita( num lista)
 	(dotimes (i num)
@@ -97,16 +97,8 @@ defun rodarEsquerda ( num lista)
 (setq a (list 1 2 3))
 (write (rodarDireita 2 a ))
 
-
-
-
-
-
-
-
-
-
-7º Questão –  vetorSeleção
+;--------------------------------------------------------------------------------------------------------------------------------
+;7º Questão –  vetorSeleção
 
 (defun selecao (lista listaindice)
         (setq ultimap ( - (length listaindice) 1))
@@ -123,7 +115,8 @@ defun rodarEsquerda ( num lista)
 (setq posicao (list 0 0 1 1 2 2 3 3 4 4))
 (write (selecao l posicao))
 
-8º Questão Primo 
+;--------------------------------------------------------------------------------------------------------------------------------
+;8º Questão Primo 
 
 (defun primo (num)
         (setq count 0)
@@ -138,7 +131,8 @@ defun rodarEsquerda ( num lista)
 (setq num 5)
 (write (primo num)) 
 
-Questão 10 
+;--------------------------------------------------------------------------------------------------------------------------------
+;Questão 10 
 (defun combos (list)
 	(if (null list) '(nil)
 	(let * (( a (car list))
