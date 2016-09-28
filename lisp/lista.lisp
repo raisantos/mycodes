@@ -134,7 +134,10 @@ defun rodarEsquerda ( num lista)
 ;--------------------------------------------------------------------------------------------------------------------------------
 ;Questão 9 - quadrado perfeito
 (defun perfeito (n)
-  (= n (loop for i from 1 below n when (= 0 (mod n i)) sum i)))
+  (= (expt (expt n 0.5) 2)
+     n))
+  
+(print(perfeito 4))
 
 ;--------------------------------------------------------------------------------------------------------------------------------
 ;Questão 10 - conjunto das partes
