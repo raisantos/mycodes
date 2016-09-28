@@ -132,7 +132,12 @@ defun rodarEsquerda ( num lista)
 (write (primo num)) 
 
 ;--------------------------------------------------------------------------------------------------------------------------------
-;Questão 10 
+;Questão 9 - quadrado perfeito
+(defun perfeito (n)
+  (= n (loop for i from 1 below n when (= 0 (mod n i)) sum i)))
+
+;--------------------------------------------------------------------------------------------------------------------------------
+;Questão 10 - conjunto das partes
 (defun combos (list)
 	(if (null list) '(nil)
 	(let * (( a (car list))
