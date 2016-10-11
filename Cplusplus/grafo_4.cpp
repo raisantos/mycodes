@@ -15,7 +15,7 @@ private:
     Vertex valor;
     int cor, d, f;
     Item *predecessor;
-    //Lista *vertices;
+    vector<Vertex> vertices;
 
 public:
     Item() {};
@@ -51,12 +51,12 @@ public:
     int getF(){
     	return f;
     }
-    /*Lista* getVertices(){
+    vector<Vertex> getVertices(){
 	return vertices;
     }
-    void setVertices(Lista *vertices){
+    void setVertices(vector<Vertex> vertices){
 	this->vertices = vertices;
-    }*/
+    }
     void print();
 };
 
@@ -143,7 +143,6 @@ private:
 	Item *vertices; //vetor
 	int frente, tras;
 	int TAM;
-
 public:
 	Fila(int tam);
 	void enfileira(Item*);
@@ -151,14 +150,12 @@ public:
 	void mostra();
 	bool vazia();
 };
-
 Fila::Fila(int tam){
 		TAM = tam;
 		vertices = new Item[TAM];
 		frente = 0;
 		tras = frente;
 	}
-
 void Fila::enfileira (Item *it){
 	if((tras + 1) % TAM == frente){
 		cout << "Fila Cheia!!" << endl;
@@ -169,7 +166,6 @@ void Fila::enfileira (Item *it){
 		tras = (tras+1) % TAM;
 	}
 }
-
 Item* Fila::desenfileira(){
 	if(frente == tras){
 		cout << "Fila vazia!!" << endl;
@@ -183,14 +179,12 @@ Item* Fila::desenfileira(){
 		return it;
 	}
 }
-
 void Fila::mostra(){
 	for(int i = frente; i < tras; i++){
 		vertices[i].print();
 	}
 	cout << endl;
 }
-
 bool Fila::vazia(){
 	if(frente == tras){
 		return true;
@@ -241,20 +235,20 @@ void Grafo::initialize(int n) {
     this->n = n;
     adj = new Item[n+1]; // Vetor usa
     for(int i = 1; i <= n; i++){
-    	adj[i] = new Item(i);
+	adj[i] = new Item(i);
     }
     //inicializar os itens do vetor de 1 a n com os respectivos numeros de vertice
   //}  // células de 1..n
 }
 
-/*void Grafo::insertEdge(Vertex u, Vertex v) {
-  Item *x = new Item(v); // chave = vértice
-  adj[u].getVertices().insere(x); // Insere na lista // vetor de itens(adj) pega a lista(getVertices) e adiciona
-  x = new Item (u);
-  adj[v].getVertices().insere(x); // Insere na lista
+void Grafo::insertEdge(Vertex u, Vertex v) {
+  //Item *x = new Item(v); // chave = vértice
+  adj[u].getVertices().push_back(v); // Insere na lista // vetor de itens(adj) pega a lista(getVertices) e adiciona
+  //x = new Item (u);
+  adj[v].getVertices().push_back(u); // Insere na lista
   m++;
 }
-*/
+
 void Grafo::print() {
   for (int i = 1; i <= n; i++) {
     cout << "v[" << i << "] = ";
@@ -262,13 +256,13 @@ void Grafo::print() {
   }
 }
 
-void Grafo::destroy() {
+/*void Grafo::destroy() {
   for (int i = 0; i <= n; i++) {
-    //adj[i].destroy(); // destroi lista
+    adj[i].destroy(); // destroi lista
   }
   delete( adj );
   n = m = 0;
-}
+}*/
 
 // Função auxiliar
 void testaGrafo(Grafo &g) {
@@ -282,6 +276,7 @@ void testaGrafo(Grafo &g) {
   g.print();
 }
 
+/*
 //busca em profundidade
 void dfsVisita(Grafo &g, Item *u){
 	tempo = tempo+1;
@@ -323,17 +318,19 @@ void dfs(Grafo &g){
 		p = p->getProx();
 	}
 }
-/*
+
 //busca em largura
 void bfs(Grafo &g, Item *s){
-	No* p = g.getAdj()->getPrim()->getProx();
-	Item *u = new Item();
-	while(p != NULL){
-		u = p->getItem();
+	//No* p = g.getAdj()->getPrim()->getProx();
+	for(int i = 1; i <= g.getN(); i++){
+		Item *u = new Item();
+		//while(p != NULL){
+		u = g->getAdj(i); //pegar o item na posição i
 		u->setCor(BRANCO);
 		u->setD(1111);
 		u->setPredecessor(NULL);
-	    p = p->getProx();
+		   // p = p->getProx();
+		//}
 	}
 	s->setCor(CINZA);
 	s->setD(0);
@@ -378,7 +375,7 @@ int main(int argc, const char * argv[]) {
   testaGrafo(g);
   cout << "-----fim-------" << endl;
 
-  g.getAdj()[1].print();
+  //g.getAdj()[1].print();
   //dfs(g);
   //cout << g.getAdj()->getPrim()->getProx()->getItem()->getCor();
   //cout << "-----fim-------";
