@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : testes.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -18,8 +25,17 @@ private:
     vector<Vertex> vertices;
 
 public:
+    void print();
+    void printVertices();
     Item() {};
-    Item(int valor): valor(valor) { }
+    Item(Vertex valor): valor(valor) { }
+    Item(Vertex valor, int cor, int d, int f, Item* predecessor){
+    	this->valor = valor;
+    	this->cor = cor;
+    	this->d = d;
+    	this->f = f;
+    	this->predecessor = predecessor;
+    }
 
     Vertex getVertex() {
         return valor;
@@ -52,18 +68,23 @@ public:
     	return f;
     }
     vector<Vertex> getVertices(){
-	return vertices;
+    	return vertices;
     }
-    void setVertices(vector<Vertex> vertices){
-	this->vertices = vertices;
+    void setVertices(Vertex v){
+    	this->vertices.push_back(v);
     }
-    void print();
 };
 
 void Item::print(){
   cout << getVertex() << " ";
 }
 
+void Item::printVertices(){
+  for(int i = 0; i < vertices.size(); i++){
+    cout << vertices[i] << " ";
+  }
+}
+/*
 class No {
 private:
     Item *item;
@@ -136,7 +157,7 @@ void Lista::destroy(){
       delete(p);
       p = p->getProx();
     }
-}
+}*/
 /*
 class Fila{
 private:
@@ -202,6 +223,7 @@ private:
 public:
   	Grafo(int); // construtor
   	void initialize(int);
+  	void preenche();
   	void insertEdge(Vertex, Vertex);
   	void print();
   	void destroy();
@@ -228,31 +250,37 @@ public:
 
 Grafo::Grafo (int n) {
   initialize(n);
+  preenche();
 }
 
 void Grafo::initialize(int n) {
   //if (this->n != 0){
     this->n = n;
     adj = new Item[n+1]; // Vetor usa
-    for(int i = 1; i <= n; i++){
-	adj[i] = new Item(i);
-    }
     //inicializar os itens do vetor de 1 a n com os respectivos numeros de vertice
   //}  // células de 1..n
 }
 
+void Grafo::preenche(){
+  for(Vertex i = 1; i <= n; i++){
+	Item j(i);
+	adj[i] = j;
+    }
+}
+
 void Grafo::insertEdge(Vertex u, Vertex v) {
   //Item *x = new Item(v); // chave = vértice
-  adj[u].getVertices().push_back(v); // Insere na lista // vetor de itens(adj) pega a lista(getVertices) e adiciona
+  adj[u].setVertices(v); // Insere na lista // vetor de itens(adj) pega a lista(getVertices) e adiciona
   //x = new Item (u);
-  adj[v].getVertices().push_back(u); // Insere na lista
+  adj[v].setVertices(u); // Insere na lista
   m++;
 }
 
 void Grafo::print() {
   for (int i = 1; i <= n; i++) {
-    cout << "v[" << i << "] = ";
-    adj[i].print();
+    cout << "v[" << adj[i].getVertex() << "] = ";
+    adj[i].printVertices();
+    cout << endl;
   }
 }
 
@@ -276,86 +304,6 @@ void testaGrafo(Grafo &g) {
   g.print();
 }
 
-/*
-//busca em profundidade
-void dfsVisita(Grafo &g, Item *u){
-	tempo = tempo+1;
-	u->setD(tempo);
-	u->setCor(CINZA);
-	No *p = g.getAdj()[u->getVertex()].getPrim()->getProx();
-	while(p != NULL){
-		Item *v = new Item();
-		v = p->getItem();
-		if(v->getCor() == BRANCO){
-			v->setPredecessor(u);
-			dfsVisita(g, v);
-		}
-		p = p->getProx();
-	}
-	u->setCor(PRETO);
-	tempo = tempo+1;
-	u->setF(tempo);
-}
-
-void dfs(Grafo &g){
-	No* p = g.getAdj()->getPrim()->getProx();
-	while(p != NULL){
-		Item *u = new Item();
-		u = p->getItem();
-		u->setCor(BRANCO);
-		u->setPredecessor(NULL);
-	    p = p->getProx();
-	}
-
-	tempo = 0;
-	p = g.getAdj()->getPrim()->getProx();
-	while(p != NULL){
-		Item *u = new Item();
-		u = p->getItem();
-		if(u->getCor() == BRANCO){
-			dfsVisita(g, u);
-		}
-		p = p->getProx();
-	}
-}
-
-//busca em largura
-void bfs(Grafo &g, Item *s){
-	//No* p = g.getAdj()->getPrim()->getProx();
-	for(int i = 1; i <= g.getN(); i++){
-		Item *u = new Item();
-		//while(p != NULL){
-		u = g->getAdj(i); //pegar o item na posição i
-		u->setCor(BRANCO);
-		u->setD(1111);
-		u->setPredecessor(NULL);
-		   // p = p->getProx();
-		//}
-	}
-	s->setCor(CINZA);
-	s->setD(0);
-	s->setPredecessor(NULL);
-
-	Fila fila(g.getN());
-	fila.enfileira(s);
-	while(!fila.vazia()){
-		u = fila.desenfileira();
-		No *q = g.getAdj()[u->getVertex()].getPrim()->getProx();
-		while(q != NULL){
-			Item *v = new Item();
-			v = q->getItem();
-			if(v->getCor() == BRANCO){
-				v->setCor(CINZA);
-				v->setD(u->getD()+1);
-				v->setPredecessor(u);
-				fila.enfileira(v);
-			}
-			q = q->getProx();
-		}
-		u->setCor(PRETO);
-	}
-}
-*/
 int main(int argc, const char * argv[]) {
   int n;
   /*Vertex v = 1;
@@ -371,9 +319,18 @@ int main(int argc, const char * argv[]) {
 
   cout << "ordem: "; cin >> n;
   Grafo g(n);
-  cout << "-----grafo-----" << endl;
+  //cout << "-----grafo-----" << endl;
   testaGrafo(g);
-  cout << "-----fim-------" << endl;
+  /*g.getAdj()[1].setCor(CINZA);
+  g.getAdj()[3].setCor(BRANCO);
+  g.getAdj()[5].setCor(PRETO);
+  cout << g.getAdj()[1].getCor() << endl;
+  cout << g.getAdj()[2].getCor() << endl;
+  cout << g.getAdj()[3].getCor() << endl;
+  cout << g.getAdj()[4].getCor() << endl;
+  cout << g.getAdj()[5].getCor() << endl;*/
+  //testaGrafo(g);
+  //cout << "-----fim-------" << endl;
 
   //g.getAdj()[1].print();
   //dfs(g);
