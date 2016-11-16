@@ -17,3 +17,8 @@ http://rosettacode.org/wiki/Permutations/Derangements#Ruby
 https://www.ruby-lang.org/pt/about/
 http://stackoverflow.com/questions/14431582/generate-all-possibles-combinations-of-an-array-with-a-length-within-a-given-ran
 http://blog.lucascaton.com.br/2013/06/26/contar-a-frequencia-de-objetos-em-um-array-usando-ruby/
+
+
+http://repository.root-me.org/R%C3%A9seau/EN%20-%20Practical%20packet%20analysis%20-%20Wireshark.pdf
+https://sharkfest.wireshark.org/assets/presentations/B5%20-%20TCP%20Analysis%20-%20First%20Steps.pdf
+http://www.soc.napier.ac.uk/~40001507/CSN11102/Lab5.pdf
