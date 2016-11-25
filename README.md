@@ -22,3 +22,6 @@ http://blog.lucascaton.com.br/2013/06/26/contar-a-frequencia-de-objetos-em-um-ar
 http://repository.root-me.org/R%C3%A9seau/EN%20-%20Practical%20packet%20analysis%20-%20Wireshark.pdf
 https://sharkfest.wireshark.org/assets/presentations/B5%20-%20TCP%20Analysis%20-%20First%20Steps.pdf
 http://www.soc.napier.ac.uk/~40001507/CSN11102/Lab5.pdf
+
+http://www.les.inf.puc-rio.br/wiki/images/e/ef/Aula02-diagrama_sequencia.pdf
+http://www.dsc.ufcg.edu.br/~jacques/cursos/map/html/uml/diagramas/interacao/sequencia.htm
