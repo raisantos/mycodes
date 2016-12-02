@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include <list>
 #include <climits>
 #include <iomanip>
 using namespace std;
@@ -10,7 +9,16 @@ typedef int Vertice;
 const float FLOAT_MAX = LONG_MAX;
 const float INFINITO = INT_MAX;
 
-int extraiMinimo(vector<float> chaves, vector<bool> vertices, int ordem)
+class MST{
+	public:
+	MST(){
+	}
+	int extraiMinimo();
+	void somaMST();
+	void prim();
+};
+
+int MST::extraiMinimo(vector<float> chaves, vector<bool> vertices, int ordem)
 {
    // Initialize min value
    float menor = FLOAT_MAX;
@@ -27,7 +35,7 @@ int extraiMinimo(vector<float> chaves, vector<bool> vertices, int ordem)
 }
 
 // A utility function to print the constructed MST stored in parent[]
-void somaMST(vector<int> arvore, vector<vector<float> > grafo, int ordem)
+void MST::somaMST(vector<int> arvore, vector<vector<float> > grafo, int ordem)
 {
    float acumulador = 0.0;
    for (int i = 1; i < ordem; i++){
@@ -38,7 +46,7 @@ void somaMST(vector<int> arvore, vector<vector<float> > grafo, int ordem)
 
 // Function to construct and print MST for a graph represented using adjacency
 // matrix representation
-void MST(vector<vector<float> > grafo, int ordem, int raiz)
+void MST::prim(vector<vector<float> > grafo, int ordem, int raiz)
 {
      vector<int> arvore(ordem); // Array to store constructed MST
      vector<float> chaves(ordem);   // Key values used to pick minimum weight edge in cut
@@ -177,7 +185,7 @@ int main() {
 
     cin >> raiz;
 
-    MST(gt.getAdj(), ordem, raiz);
+    prim(gt.getAdj(), ordem, raiz);
 
 	return 0;
 }
