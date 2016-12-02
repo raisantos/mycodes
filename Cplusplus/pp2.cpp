@@ -13,9 +13,9 @@ class MST{
 	public:
 	MST(){
 	}
-	int extraiMinimo();
-	void somaMST();
-	void prim();
+	int extraiMinimo(vector<float> chaves, vector<bool> vertices, int ordem);
+	void somaMST(vector<int> arvore, vector<vector<float> > grafo, int ordem);
+	void prim(vector<vector<float> > grafo, int ordem, int raiz);
 };
 
 int MST::extraiMinimo(vector<float> chaves, vector<bool> vertices, int ordem)
@@ -175,6 +175,7 @@ int main() {
     cin >> tamanho;
 
     GrafoDeTransmissao<float> gt(ordem);
+    MST mst = new MST();
 
     for (int i = 0; i < tamanho; ++i) {
     	cin >> v1;
@@ -185,7 +186,7 @@ int main() {
 
     cin >> raiz;
 
-    prim(gt.getAdj(), ordem, raiz);
+    mst.prim(gt.getAdj(), ordem, raiz);
 
 	return 0;
 }
