@@ -25,3 +25,6 @@ http://www.soc.napier.ac.uk/~40001507/CSN11102/Lab5.pdf
 
 http://www.les.inf.puc-rio.br/wiki/images/e/ef/Aula02-diagrama_sequencia.pdf
 http://www.dsc.ufcg.edu.br/~jacques/cursos/map/html/uml/diagramas/interacao/sequencia.htm
+
+
+https://www.reddit.com/r/PopcornTimeCE/comments/3xa881/downloads/
